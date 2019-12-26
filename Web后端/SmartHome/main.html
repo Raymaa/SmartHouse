@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>智能家居数据展示页</title>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://www.echartsjs.com/dist/echarts.js"></script>
+	<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<style>
+body{
+	padding-top: 140px;
+	padding-bottom: 40px;
+	background: #B3FFAB;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #12FFF7, #B3FFAB);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #12FFF7, #B3FFAB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.button {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #0099FF;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 1px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>  
+			<script>
+				var refresh
+				var refresh1
+				var refresh2
+				var ob1=$.ajax();
+				var ob2=$.ajax();
+				var ob3=$.ajax();
+
+
+				function event1()
+				{// 基于准备好的dom，初始化echarts实例
+					clearInterval(ob2);
+					clearInterval(ob3);
+					document.getElementById("butt").style.display="none"
+					document.getElementById("main").style.display=""
+					var myChart = echarts.init(document.getElementById('main')); //找到容器对象
+					var option = {
+								tooltip : {
+									formatter: "{a} <br/>{b} : {c}%"
+								},
+								toolbox: {
+									feature: {
+										restore: {},
+										saveAsImage: {}
+									}
+								},
+								series: [
+									{
+										name: '业务指标',
+										type: 'gauge',
+										detail: {formatter:'{value}%'},
+										data: [{value: 0, name: '烟雾测量量'}]
+									}
+								]
+							};
+					refresh = function(){
+					    $.ajax({
+                   url : "http://192.168.43.209:8080/SmartHome/ReadSmog?user=hzy",
+                   dataType:"json",
+                   type:'get',
+					async : true,
+                   success:function(json) {
+					   option.series[0].data[0].value = json[0].value;
+						myChart.setOption(option, true);
+				   },
+					error:function(errorMsg) {   //调试
+					 alert("请求失败!");
+					 }});
+					}
+					ob1 = setInterval(refresh, 3000);
+					refresh();
+				}
+
+
+				function event2()
+				{
+					clearInterval(ob1);
+					clearInterval(ob3);
+					document.getElementById("butt").style.display="none"
+					document.getElementById("main").style.display=""
+					var myChart = echarts.init(document.getElementById('main')); //找到容器对象
+					// 指定图表的配置项和数据
+					var option = {
+								tooltip : {
+									formatter: "{a} <br/>{b} : {c}%"
+								},
+								toolbox: {
+									feature: {
+										restore: {},
+										saveAsImage: {}
+									}
+								},
+								series: [
+									{
+										name: '业务指标',
+										type: 'gauge',
+										detail: {formatter:'{value}C'},
+										data: [{value: 10, name: '实时温度'}]
+									}
+								]
+							};
+					refresh1 = function(){
+					$.ajax({
+                   url : "http://192.168.43.209:8080/SmartHome/ReadTemperature?user=hzy",
+                   dataType:"json",
+                   type:'get',
+					async : true,
+                   success:function(json) {
+					   option.series[0].data[0].value = json[0].value;
+						myChart.setOption(option, true);
+				   },
+					error:function(errorMsg) {   //调试
+					 alert("请求失败!");
+					 }});
+					}
+					ob2 = setInterval(refresh1, 3000)
+					refresh1()
+				}
+
+				function event3()
+				{
+					clearInterval(ob1);
+					clearInterval(ob2);
+					document.getElementById("butt").style.display="none"
+					document.getElementById("main").style.display=""
+					var myChart = echarts.init(document.getElementById('main')); //找到容器对象
+					// 指定图表的配置项和数据
+					var option = {
+								tooltip : {
+									formatter: "{a} <br/>{b} : {c}%"
+								},
+								toolbox: {
+									feature: {
+										restore: {},
+										saveAsImage: {}
+									}
+								},
+								series: [
+									{
+										name: '业务指标',
+										type: 'gauge',
+										detail: {formatter:'{value}%'},
+										data: [{value: 20, name: '实时湿度'}]
+									}
+								]
+							};
+					refresh2 = function(){
+					$.ajax({
+                   url : "http://192.168.43.209:8080/SmartHome/ReadCo2?user=hzy",
+                   dataType:"json",
+                   type:'get',
+					async : true,
+                   success:function(json) {
+					   option.series[0].data[0].value = json[0].value;
+						myChart.setOption(option, true);
+				   },
+					error:function(errorMsg) {   //调试
+					 alert("请求失败!");
+					 }});
+					}
+					ob3 = setInterval(refresh2, 3000)
+					refresh2()
+				}
+
+
+				$.get("http://192.168.43.209:8080/SmartHome/SetCmd?type=led&state=0");
+
+				function event4(a) {//控制灯泡区域是否可见
+						clearInterval(ob1);
+					    clearInterval(ob2);
+						clearInterval(ob3);
+						document.getElementById("main").style.display="none"
+				       var obj = document.getElementById(a);
+						obj.style.display=""
+								}
+
+
+				 function mySwitch(id)       //控制开关灯
+				 {
+
+						 element=document.getElementById('bulb')
+						 if (element.src.match("bulbon"))
+						 {
+						 	$.get("http://192.168.43.209:8080/SmartHome/SetCmd?type=led&state=0");
+							element.src="bulboff.svg";  //更换开关图片
+							id.innerHTML='开灯';  //按钮
+						 }
+						 else{
+							 $.get("http://192.168.43.209:8080/SmartHome/SetCmd?type=led&state=1");
+							element.src="bulbon.svg";
+							id.innerHTML='关灯';
+						 }
+				 }
+			</script>
+ 
+</head>
+<body>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-14 column">
+			<div class="row clearfix">
+			<div class="page-header">
+				<h1>
+					智能家居控制展示中心 <small>Smart Home</small>
+				</h1>
+			</div>
+
+			<br>
+			<br>
+			<div class="col-md-2 column">
+			<div class="btn-group btn-group-vertical btn-group-lg">
+				 <button  class="button" type="button" onclick="event1()"> <span>烟雾检测模块</span></button>
+				 <button  class="button" type="button" onclick="event2()"> <span>温度展示模块</span></button>
+				<button  class="button" type="button" onclick="event3()"> <span>湿度展示模块</span></button>
+				 <button  class="button" type="button" onclick="event4('butt')"> <span>灯光控制</span></button>
+			</div>
+			</div>
+			<div class="col-md-6 col-md-offset-2">
+			<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+			<div id="main" style="width: 600px;height:400px;" >
+
+			</div>
+				<div style="display:none;" id="butt" >
+
+				   <img id="bulb" src="bulboff.svg" style="margin:10px 5px 30px 175px">
+					<br><br>
+  					 <button class="button"  onclick= mySwitch(this) style="height: 50px;width: 100px;margin:10px 5px 30px 200px;" >开灯</button>
+				</div>
+
+	</div>
+		</div>
+</div>
+	</div>
+</div>
+</body>
+</html>

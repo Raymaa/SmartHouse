@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <Preference android:key="clear"
+        android:title="清除缓存"/>
+    <SwitchPreference android:key="getmessage"
+        android:title="接收推送通知"/>
+    <SwitchPreference android:key="nowifeload"
+        android:title="仅在wife下更新"/>
+    <Preference android:key="about"
+        android:title="关于我们"/>
+
+</PreferenceScreen>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+
+            android:id="@+id/btn_cmd"
+            android:title="发送指令" />
+
+        <item
+
+            android:id="@+id/btn_add"
+            android:title="添加设备" />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+        <item
+
+            android:id="@+id/main_aty_navigation_item_setting"
+            android:title="个人设置" />
+        <item
+            android:id="@+id/main_aty_navigation_item_aboutus"
+            android:title="关于我们" />
+        <item
+            android:id="@+id/main_aty_navigation_item_loginout"
+           android:title="退出" />
+
+    </group>
+
+</menu>

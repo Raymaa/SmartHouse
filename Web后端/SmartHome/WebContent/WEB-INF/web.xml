@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <servlet>
+    <servlet-name>SetSenorSmog</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.SetSenorSmog</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetSenorSmog</servlet-name>
+    <url-pattern>/SetSenorSmog</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>SetSenorTemperature</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.SetSenorTemperature</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetSenorTemperature</servlet-name>
+    <url-pattern>/SetSenorTemperature</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>SetSenorCo2</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.SetSenorCo2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetSenorCo2</servlet-name>
+    <url-pattern>/SetSenorCo2</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>SetLedState</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.SetLedState</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetLedState</servlet-name>
+    <url-pattern>/SetLedState</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+
+    <servlet>
+    <servlet-name>ReadCo2</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.ReadCo2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadCo2</servlet-name>
+    <url-pattern>/ReadCo2</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>ReadSmog</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.ReadSmog</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadSmog</servlet-name>
+    <url-pattern>/ReadSmog</url-pattern>
+  </servlet-mapping>
+  
+  
+    <servlet>
+    <servlet-name>ReadTemperature</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.ReadTemperature</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadTemperature</servlet-name>
+    <url-pattern>/ReadTemperature</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>ReadLedState</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.ReadLedState</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReadLedState</servlet-name>
+    <url-pattern>/ReadLedState</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>SetCmd</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.SetCmd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetCmd</servlet-name>
+    <url-pattern>/SetCmd</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+	<async-supported>true</async-supported>
+    <servlet-name>ReceviceCmd</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.ReceviceCmd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReceviceCmd</servlet-name>
+    <url-pattern>/ReceviceCmd</url-pattern>
+  </servlet-mapping>
+  
+
+      <servlet>
+    <servlet-name>StopConnention</servlet-name>
+    <servlet-class>com.sgxy.smarthome.servlets.StopConnention</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StopConnention</servlet-name>
+    <url-pattern>/StopConnention</url-pattern>
+  </servlet-mapping>
+  
+ 
+</web-app>

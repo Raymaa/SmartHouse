@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#4B4E53"
+    android:layout_height="match_parent">
+    <include layout="@layout/datatoolbar" />
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_above="@+id/tv_avg"
+            android:id="@+id/tv_which"
+            android:layout_margin="20dp"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:layout_marginBottom="2dp"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室内温度"/>
+        <TextView
+            android:id="@+id/tv_avg"
+            android:layout_margin="20dp"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="平均值：25°C"/>
+        <lecho.lib.hellocharts.view.PieChartView
+            android:layout_toRightOf="@+id/tv_avg"
+            android:id="@+id/pie_chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+    <lecho.lib.hellocharts.view.LineChartView
+        android:padding="5dp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/pie_chart"
+        android:layout_marginRight="20dp"
+        android:layout_weight="3"
+        android:id="@+id/line_chart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
